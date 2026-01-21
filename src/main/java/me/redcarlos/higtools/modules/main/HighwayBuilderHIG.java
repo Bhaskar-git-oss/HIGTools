@@ -509,7 +509,12 @@ public class HighwayBuilderHIG extends Module {
         setState(State.Center);
         lastBreakingPos.set(0, 0, 0);
 
-        start = mc.player.getPos();
+        start = new Vec3d(
+    mc.player.getX(),
+    mc.player.getY(),
+    mc.player.getZ()
+);
+
         blocksBroken = blocksPlaced = 0;
         displayInfo = true;
         sentLagMessage = false;
@@ -801,7 +806,15 @@ public class HighwayBuilderHIG extends Module {
         Center {
             @Override
             protected void start(HighwayBuilderHIG b) {
-                if (b.mc.player.getPos().isInRange(Vec3d.ofBottomCenter(b.mc.player.getBlockPos()), 0.1)) {
+                Vec3d playerPos = new Vec3d(
+    b.mc.player.getX(),
+    b.mc.player.getY(),
+    b.mc.player.getZ()
+);
+
+if (playerPos.isInRange(
+    Vec3d.ofBottomCenter(b.mc.player.getBlockPos()), 0.1)) {
+
                     stop(b);
                 }
             }
@@ -932,7 +945,13 @@ public class HighwayBuilderHIG extends Module {
 
             @Override
             protected void tick(HighwayBuilderHIG b) {
-                Vec3d vec = b.mc.player.getPos().add(b.mc.player.getVelocity()).add(0, -0.75, 0);
+                Vec3d vec = new Vec3d(
+    b.mc.player.getX(),
+    b.mc.player.getY(),
+    b.mc.player.getZ()
+).add(b.mc.player.getVelocity())
+ .add(0, -0.75, 0);
+
                 pos.set(b.mc.player.getBlockX(), vec.y, b.mc.player.getBlockZ());
 
                 if (pos.getY() >= b.mc.player.getBlockPos().getY()) {
@@ -1864,8 +1883,11 @@ public class HighwayBuilderHIG extends Module {
                 float velocity = BowItem.getPullProgress(b.mc.player.getItemUseTime());
 
                 // Positions
-                Vec3d pos = target.getPos();
-
+                Vec3d pos = new Vec3d(
+    target.getX(),
+    target.getY(),
+    target.getZ()
+);
                 double relativeX = pos.x - b.mc.player.getX();
                 double relativeY = pos.y + 0.5 - b.mc.player.getEyeY(); // aiming a little bit above the bottom of the crystal, hopefully prevents shooting the floor or failing the raytrace check
                 double relativeZ = pos.z - b.mc.player.getZ();
