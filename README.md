@@ -1,4 +1,4 @@
-My port of HIGTools to 1.21.10, won't be updated. It's made to only work with 1.21.10.
+My port of HIGTools for 1.21.10, won't be updated. It's made to only work with 1.21.10.
 -----
 <div align="center">
     <img src="/src/main/resources/assets/higtools/icon.png" alt="logo" width="20%"/>
